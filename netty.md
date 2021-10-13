@@ -51,4 +51,16 @@ A byte buffer.
 
 （6）Reactor模式
 
-![v2-7eefba893a65706eb6bbe4115cbd0b83_720w](C:\Users\236774\Desktop\v2-7eefba893a65706eb6bbe4115cbd0b83_720w.jpg)
+![v2-7eefba893a65706eb6bbe4115cbd0b83_720w](C:\Users\236774\Desktop\学习\github\myTechNotes\netty.assets\v2-7eefba893a65706eb6bbe4115cbd0b83_720w.jpg)
+
+
+
+
+
+有用的文献：
+
+https://zhuanlan.zhihu.com/p/181239748
+
+
+
+https://mp.weixin.qq.com/s/7PojZyAdB0DflYtNEh3IBw
