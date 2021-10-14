@@ -49,15 +49,67 @@ A token representing the registration of a {@link SelectableChannel} with a
 A byte buffer.
 ```
 
-（6）Reactor模式
+（6）mmap（memory-mapped files）
+
+
+
+## 其他
+
+（1）Reactor模式
 
 ![v2-7eefba893a65706eb6bbe4115cbd0b83_720w](C:\Users\236774\Desktop\学习\github\myTechNotes\netty.assets\v2-7eefba893a65706eb6bbe4115cbd0b83_720w.jpg)
 
+为什么要有worker group，感觉只需要boss group就可以了啊，别忘记现在的处理器都是多核心的啊！！！
+
+## 涉及到的思想
+
+Reactor模式：像不像银行大堂的服务模式：
+
+有客户去办理业务，首先是大堂经理统一处理，她会告诉你办理业务对应的服务人员，然后你去找那个服务人员办理具体业务，这样办事效率大大提高了。业务办理人员不用感知有客户来，只有大堂经理感知有客户来。
+
+divide-and-conquer
 
 
 
 
-有用的文献：
+
+![1634106363(1)](C:\Users\236774\Desktop\学习\github\myTechNotes\netty.assets\1634106363(1).jpg)
+
+
+
+## Netty中的主要概念
+
+### IO事件
+
+- InBound事件：
+
+  处理inBound事件实现 ChannelInboundHandler。
+
+- OutBound事件。
+
+  处理Outbound 事件的 handler 需要实现 ChannelOutboundHandler。
+
+  eg：对于客户端来讲， connect 和 write 就是 **out** 事件， read 就是 **in** 事件；对于服务端来讲，  write 就是 **out** 事件， read 就是 **in** 事件
+
+  
+
+  ### DefaultChannelPipeline
+
+  与channel一对一,包含了一系列的ChannelHandler
+
+  ```
+  A list of ChannelHandlers which handles or intercepts inbound events and outbound operations of a Channel. ChannelPipeline implements an advanced form of the Intercepting Filter  pattern to give a user full control over how an event is handled and how the ChannelHandlers in a pipeline interact with each other.
+  ```
+
+  ![1634200096(1)](C:\Users\236774\Desktop\学习\github\myTechNotes\netty.assets\1634200096(1).jpg)
+
+  
+
+# 有用的文献：
+
+
+
+Doug Lea 关于nio的文章： http://gee.cs.oswego.edu/dl/cpjslides/nio.pdf
 
 https://zhuanlan.zhihu.com/p/181239748
 
