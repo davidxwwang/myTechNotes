@@ -28,6 +28,18 @@ top命令中的hi 和si指的就是硬中断和软中断的使用率
 
 
 
+### rocketmq的schame
+
+（要注意schame的演进和向前以及向后的兼容性）
+
+
+
+### rocketmq与flink的融合
+
+https://www.infoq.cn/article/ofEHzYoJ4Lyo4Qtfq3zB?utm_source=related_read_bottom&utm_medium=article
+
+
+
 
 
 ### unix管道哲学
@@ -37,3 +49,5 @@ top命令中的hi 和si指的就是硬中断和软中断的使用率
 可不可以在日常开发中也利用管道的思想，将业务代码，db，缓存，索引等穿起来。kafka/rocketmq等异步队列可不可以做pipe将业务连接起来。
 
 ![1635228104(1)](C:\Users\236774\Desktop\学习\github\myTechNotes\myOwnTechNotesInWondow\异步消息队列\1635228104(1).jpg)
+
+业务方得到一个input，输出一个output，然后向rocketmq发出一个消息。
