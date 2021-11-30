@@ -35,15 +35,43 @@ https://man7.org/linux/man-pages/man7/tcp.7.html
 
 ### tcp的流量控制
 
-滑动窗口流量控制
+#### 滑动窗口流量控制
 
-tcp的可靠传输：
+发送缓存，接受缓存，发送窗口
+
+窗口为调整为0情况（见下面的坚持计时器）
+
+拥塞控制：
+
+基于是否能收到ack确认，动态调整拥塞窗口。
+
+（1）慢开始算法
+
+（2）拥塞避免算法
+
+（3）快重传：发送方尽快发送，而不是一定等到重传定时器超时再重传
+
+（5）快恢复：（见下图5号）
+
+![OIP-C](OIP-C.jpg)
+
+#### tcp的可靠传输：
+
+（1）窗口控制
+
+（2）ack确认机制
+
+​			累计确认
+
+​			捎带确认
 
 ```
 ack = seqNum + length + 1 表示我已经成功收到了seqNum + length的数据，期望收到的序列号为ack
 ```
 
+（3）超时重传
 
+超时时间的确定（RTO）：基于RTT时间的平均加权计算
 
 ### tcp中的定时器：
 
@@ -92,6 +120,24 @@ ack = seqNum + length + 1 表示我已经成功收到了seqNum + length的数据
 
 #### （3）超时重传定时器
 
+
+
+### tcp的nagle算法与delayed ACK
+
+（1）nagle算法 如果tcp中的负载特别小，假设每次1,2个字节，那么网络可能会变的非常拥塞，nagle算法就是为了阻止这种情况发生的。
+
+（2）delayed ACK ：一般情况下tcp接受到数据之后并不会马上返回ack，而是要等到本侧有发送的数据时一起发送，简称 “数据夹带ack”
+
+nagle算法(默认是开启的)：当tcp发送一个小于MSS的数据时候，必须要等到ack的确认，才能发送下一个包。
+
+```
+Nagle's algorithm is a means of improving the efficiency of TCP/IP networks by reducing the number of packets that need to be sent over the network.
+```
+
+当nagle算法关闭，意味着来数据就会把它发出去。
+
+![nagle-and-non-nagle-comparative](nagle-and-non-nagle-comparative.webp)
+
 ## DNS相关
 
 ## IP相关
@@ -101,6 +147,14 @@ ack = seqNum + length + 1 表示我已经成功收到了seqNum + length的数据
 使用wireshark看tsl： https://www.jianshu.com/p/a3a25c6627ee
 
 ### IPV4
+
+linux系统中 
+
+```
+cat /etc/services 可以看到所有提供的服务，不如可以看到22端口是ssh服务
+```
+
+
 
 ### IPV6
 
